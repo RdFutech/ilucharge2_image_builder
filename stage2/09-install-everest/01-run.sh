@@ -1,5 +1,10 @@
 #!/bin/bash -e
 
+on_chroot <<EOF
+pip3 install --upgrade pip
+pip3 install py4j aiofile environs
+EOF
+
 install -m 755 files/stm32flash "${ROOTFS_DIR}/usr/bin"
 #install -m 644 files/boot-mark-good.service "${ROOTFS_DIR}/lib/systemd/system/"
 install -m 644 files/mosquitto-config-init.service "${ROOTFS_DIR}/lib/systemd/system/"
@@ -47,5 +52,4 @@ else
     mv /etc/mosquitto/conf.d /etc/mosquitto/conf.d-factory-default
     ln -s /mnt/user_data/etc/mosquitto/conf.d /etc/mosquitto/conf.d
 fi
-pip3 install py4j aiofile environs
 EOF
