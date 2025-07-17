@@ -19,9 +19,7 @@ python3-pydantic
 python3-netifaces
 python3-typing-extensions
 python3-dateutil
-python3-pip
-python3-setuptools
-python3-wheel
+pip
 tcpdump
 libevent-2.1-7
 libevent-pthreads-2.1-7

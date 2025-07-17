@@ -3,3 +3,6 @@ wireguard
 chrony
 hostapd
 dnsmasq
+build-essential
+python3-dev
+gcc
