@@ -22,10 +22,10 @@ install -D -m 644 files/openvpn/ilucharge2.conf "${ROOTFS_DIR}/etc/openvpn/clien
 mkdir -p $WORK_DIR/everest
 (
 cd $WORK_DIR/everest
-git clone git@github.com:PionixInternal/everest-deploy-devkit.git || true
+git clone git@github.com:RdFutech/everest-deploy-devkit.git || true
 cd everest-deploy-devkit/futech
 git pull || true
-git checkout futech_prod
+#git checkout futech_prod
 mkdir -p work
 ./build_and_install.sh work ${ROOTFS_DIR}
 )

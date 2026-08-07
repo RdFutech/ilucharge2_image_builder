@@ -9,7 +9,7 @@ WPA_PASSWORD='password'
 WPA_COUNTRY='BE'
 TIMEZONE_DEFAULT='Europe/Brussels'
 DEPLOY_COMPRESSION='gz'
-IMG_DESCRIPTION='v0.2.18'
+IMG_DESCRIPTION='v0.2.19'
 HW_ID='futechr1'
 # this is where the full update goes on the server.
 # should be unstable, testing or stable

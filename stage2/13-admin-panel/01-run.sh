@@ -19,7 +19,7 @@ EOF
 
 # install everest-wifi-setup ui
 (cd /tmp
-git clone git@github.com:PionixInternal/everest-wifi-setup.git || true
+git clone git@github.com:RdFutech/everest-wifi-setup.git || true
 cd everest-wifi-setup
 git pull
 npm install
