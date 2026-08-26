@@ -9,6 +9,7 @@
   ```bash
   ssh futech@pi-compiler.local
   ```
+- access to https://drive.google.com/drive/folders/1WKPfpat9R893bzxAaSAZcOHl4fw_tCNm?usp=drive_link for all certificates and vpn clients... 
 
 ## Known quirk
 
