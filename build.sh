@@ -193,7 +193,7 @@ term() {
 trap term EXIT INT TERM
 
 export PI_GEN=${PI_GEN:-pi-gen-pionix}
-export PI_GEN_REPO=${PI_GEN_REPO:-https://github.com/RdFutech/pi-gen}
+export PI_GEN_REPO=${PI_GEN_REPO:-https://github.com/RdFutech/ilucharge2_image_builder}
 
 if [ -z "${IMG_NAME}" ]; then
 	echo "IMG_NAME not set" 1>&2

@@ -1,5 +1,5 @@
 #!/bin/bash -e
-cd /home/futech/Documents/Github/pionix_pi-gen
+cd /home/futech/Documents/Github/ilucharge2_image_builder
 sudo rm -rf work
 sudo rm -rf deploy
 sudo ./build.sh

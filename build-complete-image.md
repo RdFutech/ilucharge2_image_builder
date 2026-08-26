@@ -17,8 +17,8 @@
 ## 1. Clone the repository
 
 ```bash
-git clone https://github.com/RdFutech/pionix_pi-gen.git
-cd pionix_pi-gen
+git clone https://github.com/RdFutech/ilucharge2_image_builder.git
+cd ilucharge2_image_builder
 ```
 
 ## 2. EVerest source structure dependency
