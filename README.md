@@ -69,7 +69,30 @@ Edit the `config` file in the repo root. Key variables:
 | `UPDATE_CHANNEL` | RAUC update channel — always set to `"unstable"` for new builds. New images must first be validated on a select number of devices before ever being promoted to `testing`/`stable`/`basecamp`. |
 | `UPDATE_EVEREST_CHANNEL` | Which EVerest package channel/devkit structure to install |
 
-## 4. Build and upload the image
+## 4. Install the RAUC signing keys
+
+The RAUC bundle is signed during the `export-rauc` step, which reads the certificate and key from `~/rauc-pki/`:
+
+```bash
+rauc --cert ~/rauc-pki/futech-cert.pem --key ~/rauc-pki/futech-key.pem bundle ...
+```
+
+The signing key/certificate are **not** stored in this repository. Download `futech-cert.pem` and `futech-key.pem` from the secure share (same [Google Drive folder](https://drive.google.com/drive/folders/1WKPfpat9R893bzxAaSAZcOHl4fw_tCNm?usp=drive_link) used for the other certificates and VPN clients).
+
+Because the build is run with `sudo` (see step 5), `~` resolves to **`/root`**. On the build RPi you must therefore place both files into `/root/rauc-pki/` before building:
+
+```bash
+sudo mkdir -p /root/rauc-pki
+sudo cp futech-cert.pem /root/rauc-pki/
+sudo cp futech-key.pem  /root/rauc-pki/
+sudo chmod 600 /root/rauc-pki/futech-key.pem
+```
+
+Without these files in `/root/rauc-pki/`, the RAUC bundle signing step will fail. The matching public certificate is also baked into the image at `/etc/rauc/futech-cert.pem` (see `stage2/05-rauc`) so devices can verify update bundles signed with this key.
+
+> ⚠️ **Never commit `futech-key.pem` (or any `*-key.pem`) to git.** It is the private signing key that all devices trust for firmware updates. Keep it only in `/root/rauc-pki/` on the build host and in the secure Google Drive share.
+
+## 5. Build and upload the image
 
 Reboot the build machine first (see quirk above). Then just run the cronjob script — it builds **and** uploads the result to the FTP server in one step:
 
@@ -104,7 +127,7 @@ This uploads the `.pnx`, `.meta`, and updates `current.meta`/`current.img.gz` in
 > }
 > ```
 
-## 5. Point devices at the new channel
+## 6. Point devices at the new channel
 
 By default a device checks `basecamp`. To have a specific device pull from another channel (e.g. `unstable`) for testing, on that device create/edit:
 
@@ -118,7 +141,7 @@ with the channel name as its only contents, e.g.:
 unstable
 ```
 
-## 6. Verify what a device is currently running
+## 7. Verify what a device is currently running
 
 On the device, check the currently active update metadata:
 
@@ -141,7 +164,7 @@ Example output for `basecamp`:
 
 The `download_uri` shows which channel it last updated from.
 
-## 7. (Optional) Inspect/mount a built image
+## 8. (Optional) Inspect/mount a built image
 
 ```bash
 sudo ./imagetool.sh --mount --image-name deploy/<name>.img --mount-point /mnt/pi

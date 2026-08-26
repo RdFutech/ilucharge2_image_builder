@@ -4,3 +4,6 @@ postrun.sh
 .pc
 *-pc
 apt-cacher-ng/
+rauc-pki/
+rauc-pki____need_to_move_to_root/
+*-key.pem
